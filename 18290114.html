@@ -1,0 +1,47 @@
+<html>
+
+<body>
+   <canvas id="glcanvas" width="600" height="600"></canvas>
+
+   <button id="DirectionButton">
+      Change Rotation Direction
+   </button>
+
+   <div>
+      speed 0 <input id="slide" type="range" min="0" max="500" step="10" value="100" />
+      500
+   </div>
+
+
+
+</body>
+
+
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+   attribute vec4 vPosition; 
+   uniform float theta;
+
+   void main(){ 
+         gl_Position.x = cos(theta) * vPosition.x - sin(theta) * vPosition.y;
+         gl_Position.y = sin(theta) * vPosition.x + cos(theta) * vPosition.y;
+         gl_Position.z = 0.0;
+         gl_Position.w = 1.0;
+   }
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+   precision mediump float;
+   uniform vec3 myFragment;
+   void main() {
+      gl_FragColor = vec4( myFragment, 1.0 ); 
+   }                                
+</script>
+
+
+<script src="initShaders.js"></script>
+<script src="MV.js"></script>
+<script src="18290114.js"></script>
+<script src="webgl-utils.js"></script>
+
+</html>
